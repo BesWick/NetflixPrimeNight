@@ -1,0 +1,6 @@
+.cardImg{
+	object-fit: cover;
+    transition: 0.2s all;
+    max-height: 250px;
+    overflow: scroll;
+}
