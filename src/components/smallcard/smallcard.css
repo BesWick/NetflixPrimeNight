@@ -1,6 +1,29 @@
-.cardImg{
-	object-fit: cover;
-    transition: 0.2s all;
+.card{
+    position: relative;
+    width:200px;
     max-height: 250px;
-    overflow: scroll;
+}
+
+
+.cardImg{
+    object-fit: cover;
+    height:100%;
+    width:100%;
+	transition: 0.2s all;
+}
+
+.overlay{
+    color:white;
+    display:none;
+}
+
+.card:hover .overlay{
+    display:block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color:#1B2329;
+
 }
