@@ -16,6 +16,7 @@
     color:white;
     font: 25px Roboto, Times, serif;
     display:none;
+    opacity: .9;
 }
 
 .card:hover .overlay{

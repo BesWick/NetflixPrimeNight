@@ -7,7 +7,8 @@ function SmallCard({ type, film }) {
     const [isHover, setHover] = useState(false)
 
     //need to call TMDP API for streaming availability
-
+    const year = film.release_date.slice(0, 4)
+    const title = film.title
     return (
         <div className='card'>
             <img
@@ -17,11 +18,16 @@ function SmallCard({ type, film }) {
                 onMouseEnter={() => setHover(true)}
                 onMouseLeave={() => setHover(false)}
             />
-            <div className='overlay'>Hello</div>
+            {/* if hover -> display overlay with following info: film type, title, year, streaming availability */}
+            <div className='overlay'>
+                <div className='grid'>
+                    {type}
+                    {title}
+                    {year}
+                </div>
+            </div>
         </div>
 
-        // insert img
-        // if hover -> display overlay with following info: film type, title, year, streaming availability
         // if click -> go to its info page (seperate url)
     )
 }
