@@ -1,14 +1,31 @@
-import React, { useState } from 'react'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 import './smallcard.css'
 
 const baseImageUrl = 'https://image.tmdb.org/t/p/original/'
+const baseProviderUrl = `https://api.themoviedb.org/3`
+const API_KEY = process.env.REACT_APP_TMDB_API_KEY
 
 function SmallCard({ type, film }) {
     const [isHover, setHover] = useState(false)
+    const [provider, setProvider] = useState('')
 
-    //need to call TMDP API for streaming availability
     const year = film.release_date.slice(0, 4)
     const title = film.title
+
+    useEffect(() => {
+        async function fetchData() {
+            const response = await axios.get(
+                `${baseProviderUrl}/${type}/${film.id}/watch/providers?api_key=${API_KEY}`,
+            )
+            setProvider(response.data.results.US.flatrate)
+            return response
+        }
+        fetchData()
+    }, [])
+    console.table(provider)
+
+    //need to call TMDP API for streaming availability
     return (
         <div className='card'>
             <img
