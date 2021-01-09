@@ -14,7 +14,7 @@
 
 .overlay{
     color:white;
-    font: 25px Roboto, Times, serif;
+    font: 31px Roboto, Times, serif;
     display:none;
     opacity: .9;
 }
@@ -71,4 +71,17 @@
     align-self: center;
     padding: 0 0.75rem 0;
 
+}
+
+.fileProviders{
+    grid-area:providers;
+    /* display:flex; */
+    align-self: center;
+}
+
+.logo{
+    width:31px;
+    height:31px;
+    border-radius: 50%;
+    margin-top: 10px;
 }
