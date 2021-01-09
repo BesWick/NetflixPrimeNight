@@ -21,9 +21,9 @@ function SmallCard({ type, film }) {
             {/* if hover -> display overlay with following info: film type, title, year, streaming availability */}
             <div className='overlay'>
                 <div className='grid'>
-                    {type}
-                    {title}
-                    {year}
+                    <div className='filmType'>{type}</div>
+                    <div className='filmTitle'>{title}</div>
+                    <div className='filmYear'>{year}</div>
                 </div>
             </div>
         </div>
