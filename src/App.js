@@ -9,6 +9,7 @@ const BASE_URL = `https://api.themoviedb.org/3/discover/movie?api_key=`
 
 function App() {
     const [movies, setMovies] = useState([])
+    const [val, setVal] = useState('')
 
     useEffect(() => {
         async function fetchData() {
@@ -20,13 +21,21 @@ function App() {
         }
         fetchData()
     }, [])
-    console.log(movies)
+    // console.log(movies)
+    const logToConsole = (value) => {
+        console.log(value)
+    }
 
     return (
         <div className='App'>
             <div className='container'>
                 {movies.map((movie) => (
-                    <SmallCard key={movie.id} type='movie' film={movie} />
+                    <SmallCard
+                        key={movie.id}
+                        type='movie'
+                        film={movie}
+                        logThis={logToConsole}
+                    />
                 ))}
             </div>
         </div>

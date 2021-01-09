@@ -8,7 +8,7 @@ const baseImageUrl = 'https://image.tmdb.org/t/p/original/'
 const baseProviderUrl = `https://api.themoviedb.org/3`
 const API_KEY = process.env.REACT_APP_TMDB_API_KEY
 
-function SmallCard({ type, film }) {
+function SmallCard({ type, film, logThis }) {
     const [isHover, setHover] = useState(false)
     const [providers, setProvider] = useState([])
 
@@ -28,13 +28,12 @@ function SmallCard({ type, film }) {
         fetchData()
     }, [])
     // console.log(providers)
-
     if (providers.find((el) => el.provider_id === 9)) {
-        console.log('Prime found!!')
+        // console.log('Prime found!!')
         isPrime = true
     }
     if (providers.find((el) => el.provider_id === 8)) {
-        console.log('Netflix found!!')
+        // console.log('Netflix found!!')
         isNetflix = true
     }
 
@@ -50,7 +49,7 @@ function SmallCard({ type, film }) {
             />
             {/* if hover -> display overlay with following info: film type, title, year, streaming availability */}
             <div className='overlay'>
-                <div className='grid'>
+                <div className='grid' onClick={() => logThis(title)}>
                     <div className='filmType'>{type}</div>
                     <div className='filmTitle'>{title}</div>
                     <div className='filmYear'>{year}</div>
