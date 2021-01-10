@@ -24,7 +24,7 @@ function BigCard({ filmType, filmID }) {
     console.log('title:', filmData.original_title)
 
     return (
-        <div className='container'>
+        <div className='bigcard'>
             <div className='infoRow'>
                 {filmData.release_date?.slice(0, 4)}
                 {filmData?.runtime} min
