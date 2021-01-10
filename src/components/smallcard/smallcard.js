@@ -8,7 +8,8 @@ const baseImageUrl = 'https://image.tmdb.org/t/p/original/'
 const baseProviderUrl = `https://api.themoviedb.org/3`
 const API_KEY = process.env.REACT_APP_TMDB_API_KEY
 
-function SmallCard({ type, film, logThis }) {
+function SmallCard({ filmType, film, logThis }) {
+    // console.table(film)
     const [isHover, setHover] = useState(false)
     const [providers, setProvider] = useState([])
 
@@ -20,13 +21,15 @@ function SmallCard({ type, film, logThis }) {
     useEffect(() => {
         async function fetchData() {
             const response = await axios.get(
-                `${baseProviderUrl}/${type}/${film.id}/watch/providers?api_key=${API_KEY}`,
+                `${baseProviderUrl}/${filmType}/${film.id}/watch/providers?api_key=${API_KEY}`,
             )
             setProvider(response.data.results?.US?.flatrate)
+            film.filmType = filmType
             return response
         }
         fetchData()
     }, [])
+
     // console.log(providers)
     if (providers.find((el) => el.provider_id === 9)) {
         // console.log('Prime found!!')
@@ -47,10 +50,10 @@ function SmallCard({ type, film, logThis }) {
                 onMouseEnter={() => setHover(true)}
                 onMouseLeave={() => setHover(false)}
             />
-            {/* if hover -> display overlay with following info: film type, title, year, streaming availability */}
+            {/* if hover -> display overlay with following info: film filmType, title, year, streaming availability */}
             <div className='overlay'>
-                <div className='grid' onClick={() => logThis(title)}>
-                    <div className='filmType'>{type}</div>
+                <div className='grid' onClick={() => logThis(film, filmType)}>
+                    <div className='filmType'>{filmType}</div>
                     <div className='filmTitle'>{title}</div>
                     <div className='filmYear'>{year}</div>
                     <div className='fileProviders'>
