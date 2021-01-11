@@ -23,9 +23,8 @@
   overflow: scroll;
   flex-wrap: wrap;
   grid-gap: 15px;
-  max-width: 1180px;
-  width: 100%;
+  width: 80%;
   height:100%;
   margin: 0px auto;
-  padding: 0px 1rem;
+  padding: 0px 2rem;
 }
