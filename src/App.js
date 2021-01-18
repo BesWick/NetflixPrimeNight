@@ -33,9 +33,9 @@ function App() {
 
     return (
         <div className='App'>
-            <div className='container'>
-                {!bigCardFlag &&
-                    movies.map((movie) => (
+            {!bigCardFlag && (
+                <div className='container'>
+                    {movies.map((movie) => (
                         <SmallCard
                             key={movie.id}
                             filmType='movie'
@@ -43,13 +43,14 @@ function App() {
                             logThis={showBigCard}
                         />
                     ))}
-                {bigCardFlag && (
-                    <BigCard
-                        filmType={bigCardData.filmType}
-                        filmID={bigCardData.id}
-                    />
-                )}
-            </div>
+                </div>
+            )}
+            {bigCardFlag && (
+                <BigCard
+                    filmType={bigCardData.filmType}
+                    filmID={bigCardData.id}
+                />
+            )}
         </div>
     )
 }
