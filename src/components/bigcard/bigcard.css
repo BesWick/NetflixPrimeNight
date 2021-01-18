@@ -14,7 +14,7 @@
 .bigcard{
     background-color: black;
     height: 500px;
-    width:80vw;
+    min-width:890px;
     font-size: 24px;
     color: white;
     display: flex;

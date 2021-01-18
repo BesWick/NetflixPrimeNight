@@ -26,7 +26,7 @@ function App() {
     // console.table(movies)
     const showBigCard = (value, filmType) => {
         console.log(value, filmType)
-        setBigCarDFlag(true)
+        setBigCarDFlag(!bigCardFlag)
         setBigCardData(value)
     }
     // console.log(bigCardFlag)
