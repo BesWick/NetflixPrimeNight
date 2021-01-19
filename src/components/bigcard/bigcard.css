@@ -1,28 +1,30 @@
-.outerContainer{
-    width:100%;
-    height:100%;
+.outerContainer {
+    width: 100%;
+    height: 100%;
 }
 
-.wrapper{
-    width:100%;
-    height:100%;
-    background-image: linear-gradient(rgba(0,0,0,.85) 6%,rgba(0,0,0,.2) 40%,#000 98%);
-    
+.wrapper {
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.85) 6%,
+        rgba(0, 0, 0, 0.2) 40%,
+        #000 98%
+    );
 }
 
-
-.bigcard{
+.bigcard {
     background-color: black;
     height: 500px;
-    min-width:890px;
+    width: 890px;
     font-size: 24px;
     color: white;
     display: flex;
-    align-self:  qqcenter;
-    gap:20px;
-    border-radius: .25rem;
+    align-self: qqcenter;
+    gap: 20px;
+    border-radius: 0.25rem;
     margin: 0px auto;
-    position:absolute;
+    position: absolute;
     top: 50%;
     left: 50%;
     /* bring your own prefixes */
@@ -30,21 +32,34 @@
     border-radius: 10px;
 }
 
+@media screen and (max-width: 990px) {
+    .bigcard {
+        width: 500px;
+        flex-wrap: wrap;
+    }
+    .pictureSide {
+        display: none;
+    }
+    .bigcard {
+        flex-basis: 100%;
+        padding: 50px;
+        overflow: scroll;
+    }
+}
 
-.infoSide{
-    text-align:left;
-    width:60%;
+.infoSide {
+    text-align: left;
+    width: 60%;
     overflow: scroll;
 }
-.pictureSide{
-    overflow:hidden;
+.pictureSide {
+    overflow: hidden;
     object-fit: cover;
-    width:39%;
+    width: 39%;
     border-radius: 10px 0 0 10px;
 }
 
-
-.infoRow{
+.infoRow {
     margin: 1.5rem 0px;
     font-size: 1rem;
     line-height: 1.5rem;
@@ -52,19 +67,18 @@
     color: rgb(122, 140, 153);
 }
 
-.infoRow span + span::before{
-    content: " • ";
+.infoRow span + span::before {
+    content: ' • ';
 }
 
-
-.titleRow{
+.titleRow {
     font-weight: 600;
     font-size: 3rem;
     line-height: 3.75rem;
     letter-spacing: 0.01em;
 }
 
-#greyText{
+#greyText {
     font-size: 1rem;
     line-height: 1.5rem;
     letter-spacing: 0.01em;
@@ -72,14 +86,12 @@
     font-weight: 500;
 }
 
-
-
-.overviewRow{
+.overviewRow {
     font-size: 1rem;
     padding-right: 20px;
 }
 
-.lastRow{
+.lastRow {
     display: flex;
     padding: 10px;
     justify-content: space-between;
@@ -88,8 +100,36 @@
     max-width: 332px;
 }
 
-.listItem{
+.listItem {
     font-size: 1rem;
     line-height: 1.5rem;
     letter-spacing: 0.01em;
+}
+
+#close {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    text-align: center;
+    font-size: 2rem;
+    width: 30px;
+    height: 30px;
+    color: #fff;
+    font-weight: 600;
+    background: transparent;
+    line-height: 10px;
+}
+#close:hover,
+#close:focus {
+    color: grey;
+    text-decoration: none;
+    cursor: pointer;
+    transform: scale(0.8);
+}
+#close {
+    position: absolute;
+    right: 20px;
+    z-index: 1000;
+    float: right;
+    top: 20px;
 }

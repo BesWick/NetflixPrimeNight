@@ -10,7 +10,7 @@ const BASE_URL = `https://api.themoviedb.org/3/discover/movie?api_key=`
 
 function App() {
     const [movies, setMovies] = useState([])
-    const [bigCardFlag, setBigCarDFlag] = useState(false)
+    const [bigCardFlag, setBigCardFlag] = useState(false)
     const [bigCardData, setBigCardData] = useState('')
 
     useEffect(() => {
@@ -26,9 +26,10 @@ function App() {
     // console.table(movies)
     const showBigCard = (value, filmType) => {
         console.log(value, filmType)
-        setBigCarDFlag(!bigCardFlag)
+        setBigCardFlag(!bigCardFlag)
         setBigCardData(value)
     }
+
     // console.log(bigCardFlag)
 
     return (
@@ -49,6 +50,7 @@ function App() {
                 <BigCard
                     filmType={bigCardData.filmType}
                     filmID={bigCardData.id}
+                    togglePopup={() => setBigCardFlag(!bigCardFlag)}
                 />
             )}
         </div>

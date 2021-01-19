@@ -8,7 +8,7 @@ const baseImageUrl = 'https://image.tmdb.org/t/p/original'
 
 const latterURL = `?api_key=${API_KEY}&language=en-US&append_to_response=credits`
 
-function BigCard({ filmType, filmID }) {
+function BigCard({ filmType, filmID, togglePopup }) {
     const [filmData, setFilmData] = useState([])
     const [directors, setDirectors] = useState([])
     const [actors, setActors] = useState([])
@@ -91,6 +91,12 @@ function BigCard({ filmType, filmID }) {
                             </div>
                         </div>
                     </div>
+                    <input
+                        type='button'
+                        value='x'
+                        id='close'
+                        onClick={togglePopup}
+                    />
                 </div>
             </div>
         </div>
