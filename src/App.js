@@ -8,7 +8,7 @@ require('dotenv').config()
 
 const API_KEY = process.env.REACT_APP_TMDB_API_KEY
 const BASE_URL = `https://api.themoviedb.org/3/discover/movie?api_key=`
-const SEARCH_URL= `https://api.themoviedb.org/3/search/multi?api_key=`
+const SEARCH_URL = `https://api.themoviedb.org/3/search/multi?api_key=`
 
 function App() {
     const [films, setFilms] = useState([])
@@ -31,28 +31,30 @@ function App() {
         fetchData()
     }, [])
     useEffect(() => {
-        if(search == ""){
-            console.log("EMPTY")
-            setFilms(cache) //discover 
-        }else{ //time to search w/ query
+        if (search == '') {
+            console.log('EMPTY')
+            setFilms(cache) //discover
+        } else {
+            //time to search w/ query
             searchTMDB()
         }
-
     }, [search])
 
     const searchTMDB = async () => {
         try {
-            const { data } = await axios.get(`${SEARCH_URL}${API_KEY}&language=en-US&query=${search}&region=US`)
+            const { data } = await axios.get(
+                `${SEARCH_URL}${API_KEY}&language=en-US&query=${search}&region=US`,
+            )
             // console.log('DATA', data.results)
-            let modifiedArray = data.results.filter( (a) => a.media_type != 'person')
-            console.log("MODIFIED DATA", modifiedArray)
+            let modifiedArray = data.results.filter(
+                (a) => a.media_type != 'person',
+            )
+            console.log('MODIFIED DATA', modifiedArray)
             setFilms(modifiedArray)
         } catch (err) {
             console.log(err.message)
         }
     }
-
-
 
     const showBigCard = (value, filmType) => {
         console.log(value, filmType)
@@ -73,14 +75,16 @@ function App() {
                         }}
                     />
                     <div className='container'>
-                        {films.map((film) => (
-                            <SmallCard
-                                key={film.id}
-                                filmType={film?.media_type || 'movie'}
-                                film={film}
-                                logThis={showBigCard}
-                            />
-                        ))}
+                        <div className='innerContainer'>
+                            {films.map((film) => (
+                                <SmallCard
+                                    key={film.id}
+                                    filmType={film?.media_type || 'movie'}
+                                    film={film}
+                                    logThis={showBigCard}
+                                />
+                            ))}
+                        </div>
                     </div>
                 </div>
             )}

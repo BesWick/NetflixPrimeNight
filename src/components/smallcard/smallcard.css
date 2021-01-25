@@ -1,87 +1,103 @@
-.card{
+.card {
     position: relative;
-    width:200px;
-    max-height: 250px;
+    /* width: 207px;
+    max-height: 280px;  */
+    display: block;
+    box-sizing: border-box;
+    width: 16.6667%;
+    padding: 10px;
+}
+@media only screen and (max-width: 1100px) {
+    .card {
+        width: 25%;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .card {
+        width: 33.3333%;
+    }
+}
+@media only screen and (max-width: 480px) {
+    .card {
+        width: 50%;
+    }
 }
 
-
-.cardImg{
+.cardImg {
     object-fit: cover;
-    height:100%;
-    width:100%;
-	transition: 0.2s all;
+    height: 100%;
+    width: 100%;
+    transition: 0.2s all;
 }
 
-.overlay{
-    color:white;
+.overlay {
+    color: white;
     font: 31px Roboto, Times, serif;
-    display:none;
-    opacity: .9;
+    display: none;
+    opacity: 0.9;
 }
 
-.card:hover .overlay{
-    display:block;
+.card:hover .overlay {
+    display: block;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color:#1B2329;
-
+    background-color: #1b2329;
 }
 
-.grid{
-    display:grid;
+.grid {
+    display: grid;
     cursor: pointer;
-    height:100%;
+    height: 100%;
     grid-template-columns: 50px 50px 100px;
     grid-template-rows: 1fr 1fr 1fr 1fr;
     grid-template-areas:
-        "type . ."
-        ". . ."
-        "title title title"
-        "year . providers"
+        'type . .'
+        '. . .'
+        'title title title'
+        'year . providers';
 }
 
-.filmType{
+.filmType {
     grid-area: type;
     padding: 0.75rem 0.75rem 0;
-	margin-bottom: -0.375rem;
-	font-size: 0.75rem;
-	font-weight: 500;
-	text-transform: uppercase;
+    margin-bottom: -0.375rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
     letter-spacing: 0.025rem;
-    color:#7A8C99;
+    color: #7a8c99;
 }
 
-.filmTitle{
+.filmTitle {
     grid-area: title;
     overflow: hidden;
     font-size: medium;
     font-weight: 600;
     align-self: end;
     justify-self: start;
-    margin-left:13px;
+    margin-left: 13px;
 }
 
-.filmYear{
+.filmYear {
     grid-area: year;
     font-size: 0.95rem;
-    color:#7A8C99;
+    color: #7a8c99;
     align-self: center;
     padding: 0 0.75rem 0;
-
 }
 
-.fileProviders{
-    grid-area:providers;
-    /* display:flex; */
-    align-self: center;
+.fileProviders {
+    grid-area: providers;
+    display: flex;
+    justify-self: center;
 }
 
-.logo{
-    width:31px;
-    height:31px;
+.logo {
+    width: 31px;
+    height: 31px;
     border-radius: 50%;
     margin-top: 10px;
 }
