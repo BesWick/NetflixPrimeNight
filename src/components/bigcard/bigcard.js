@@ -4,7 +4,7 @@ import './bigcard.css'
 
 const API_KEY = process.env.REACT_APP_TMDB_API_KEY
 const baseURL = 'https://api.themoviedb.org/3'
-const baseImageUrl = 'https://image.tmdb.org/t/p/original'
+const baseImageUrl = 'https://image.tmdb.org/t/p/original/'
 
 const latterURL = `?api_key=${API_KEY}&language=en-US&append_to_response=credits`
 
@@ -13,6 +13,10 @@ function BigCard({ filmType, filmID, togglePopup }) {
     const [directors, setDirectors] = useState([])
     const [actors, setActors] = useState([])
     const image = `${baseImageUrl}${filmData?.poster_path}`
+
+    const year = filmData?.release_date?.slice(0, 4) || filmData?.first_air_date?.slice(0, 4)
+    const title = filmData?.title || filmData?.name
+    const runtime = filmData?.runtime || filmData?.episode_run_time
 
     useEffect(() => {
         async function fetchData() {
@@ -40,7 +44,7 @@ function BigCard({ filmType, filmID, togglePopup }) {
         <div
             className='outerContainer'
             style={{
-                backgroundImage: `url(${baseImageUrl}${filmData.backdrop_path})`,
+                backgroundImage: `url(${baseImageUrl}${filmData?.backdrop_path})`,
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
@@ -56,11 +60,13 @@ function BigCard({ filmType, filmID, togglePopup }) {
                     </div>
                     <div className='infoSide'>
                         <div className='infoRow'>
-                            <span>{filmData.release_date?.slice(0, 4)} </span>
-                            <span>{filmData?.runtime} min </span>
+                            <span>{year} </span>
+                            <span>{runtime} min </span>
+                            {(filmData.seasons?.length &&
+                            <span>{filmData.seasons?.length} seaons</span>)}
                         </div>
                         <div className='titleRow'>
-                            {filmData?.original_title}
+                            {title}
                         </div>
                         <div className='overviewRow'>
                             <p id='greyText'>Plot</p>
