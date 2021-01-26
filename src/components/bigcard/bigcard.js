@@ -14,7 +14,9 @@ function BigCard({ filmType, filmID, togglePopup }) {
     const [actors, setActors] = useState([])
     const image = `${baseImageUrl}${filmData?.poster_path}`
 
-    const year = filmData?.release_date?.slice(0, 4) || filmData?.first_air_date?.slice(0, 4)
+    const year =
+        filmData?.release_date?.slice(0, 4) ||
+        filmData?.first_air_date?.slice(0, 4)
     const title = filmData?.title || filmData?.name
     const runtime = filmData?.runtime || filmData?.episode_run_time
 
@@ -32,7 +34,7 @@ function BigCard({ filmType, filmID, togglePopup }) {
             )
             setActors(
                 response.data.credits.cast
-                    .filter((actor) => actor.popularity > 4)
+                    .filter((actor) => actor.popularity > 3)
                     .slice(0, 5),
             )
             return response
@@ -62,12 +64,11 @@ function BigCard({ filmType, filmID, togglePopup }) {
                         <div className='infoRow'>
                             <span>{year} </span>
                             <span>{runtime} min </span>
-                            {(filmData.seasons?.length &&
-                            <span>{filmData.seasons?.length} seaons</span>)}
+                            {filmData.seasons?.length && (
+                                <span>{filmData.seasons?.length} seaons</span>
+                            )}
                         </div>
-                        <div className='titleRow'>
-                            {title}
-                        </div>
+                        <div className='titleRow'>{title}</div>
                         <div className='overviewRow'>
                             <p id='greyText'>Plot</p>
                             {filmData?.overview}
