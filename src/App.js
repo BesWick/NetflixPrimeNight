@@ -24,15 +24,15 @@ function App() {
                     axios.spread((...responses) => {
                         responses.forEach((response) => {
                             let data = response.data.results
-                            console.log(
-                                'Success',
-                                typeof data,
-                                data,
-                                response.data,
-                            )
+                            // console.log(
+                            //     'Success',
+                            //     typeof data,
+                            //     data,
+                            //     response.data,
+                            // )
                             resultArray.push(...data)
                         })
-                        console.log('submitted all axios calls', resultArray)
+                        // console.log('submitted all axios calls', resultArray)
                         setCache(resultArray)
                         setFilms(resultArray)
                         return resultArray
@@ -64,7 +64,7 @@ function App() {
                         //  console.log('Success', typeof data, data, response.data)
                         resultArray.push(...data)
                     })
-                    console.log('submitted all axios calls', resultArray)
+                    // console.log('submitted all axios calls', resultArray)
                     let modifiedArray = resultArray.filter(
                         (a) =>
                             a.media_type !== 'person' &&

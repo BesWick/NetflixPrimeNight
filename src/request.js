@@ -11,7 +11,7 @@ const SEARCH_URL = `https://api.themoviedb.org/3/search/multi?api_key=`
 export function createDiscoverRequests(n){
     const res = []
     for(let i=1; i <= n; i++){
-        res.push(axios.get(`${BASE_URL}${API_KEY}&language=en-US&sort_by=revenue.desc&include_adult=false&include_video=false&page=${i}&with_watch_providers=8%7C9&watch_region=US`))
+        res.push(axios.get(`${BASE_URL}${API_KEY}&language=en-US&sort_by=revenue.desc&include_video=false&page=${i}&with_watch_providers=8%7C9&watch_region=US`))
     }
     return res
 }
