@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react'
-import axios from 'axios'
-import './bigcard.css'
+import { useEffect, useState } from "react"
+import axios from "axios"
+import "./bigcard.css"
 
 const API_KEY = process.env.REACT_APP_TMDB_API_KEY
-const baseURL = 'https://api.themoviedb.org/3'
-const baseImageUrl = 'https://image.tmdb.org/t/p/original/'
+const baseURL = "https://api.themoviedb.org/3"
+const baseImageUrl = "https://image.tmdb.org/t/p/original/"
 
 const latterURL = `?api_key=${API_KEY}&language=en-US&append_to_response=credits`
 
@@ -12,7 +12,6 @@ function BigCard({ filmType, filmID, togglePopup }) {
     const [filmData, setFilmData] = useState([])
     const [directors, setDirectors] = useState([])
     const [actors, setActors] = useState([])
-    const image = `${baseImageUrl}${filmData?.poster_path}`
 
     const year =
         filmData?.release_date?.slice(0, 4) ||
@@ -21,25 +20,39 @@ function BigCard({ filmType, filmID, togglePopup }) {
     const runtime = filmData?.runtime || filmData?.episode_run_time
 
     useEffect(() => {
+        const source = axios.CancelToken.source()
         async function fetchData() {
-            const response = await axios.get(
-                `${baseURL}/${filmType}/${filmID}${latterURL}`,
-            )
-            console.log(response.data)
-            setFilmData(response.data)
-            setDirectors(
-                response.data.credits.crew.filter(
-                    (mem) => mem.job === 'Director',
-                ),
-            )
-            setActors(
-                response.data.credits.cast
-                    .filter((actor) => actor.popularity > 3)
-                    .slice(0, 5),
-            )
-            return response
+            try {
+                const response = await axios.get(
+                    `${baseURL}/${filmType}/${filmID}${latterURL}`,
+                    {
+                        cancelToken: source.token,
+                    },
+                )
+                console.log(response.data)
+                setFilmData(response.data)
+                setDirectors(
+                    response.data.credits.crew.filter(
+                        (mem) => mem.job === "Director",
+                    ),
+                )
+                setActors(
+                    response.data.credits.cast
+                        .filter((actor) => actor.popularity > 3)
+                        .slice(0, 5),
+                )
+                return response
+            } catch (err) {
+                if (!axios.isCancel(err)) {
+                    alert(err)
+                    // console.log(err.message) // => prints: Api is being canceled
+                }
+            }
         }
         fetchData()
+        return () => {
+            source.cancel("Component got unmounted")
+        }
     }, [])
 
     return (
@@ -47,9 +60,9 @@ function BigCard({ filmType, filmID, togglePopup }) {
             className='outerContainer'
             style={{
                 backgroundImage: `url(${baseImageUrl}${filmData?.backdrop_path})`,
-                backgroundPosition: 'center',
-                backgroundSize: 'cover',
-                backgroundRepeat: 'no-repeat',
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
             }}>
             <div className='wrapper'>
                 <div className='bigcard'>
