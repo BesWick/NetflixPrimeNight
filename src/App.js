@@ -79,7 +79,7 @@ function App() {
     }
 
     const showBigCard = (value, filmType) => {
-        console.log(value, filmType)
+        // console.log(value, filmType)
         setBigCardFlag(!bigCardFlag)
         setBigCardData(value)
     }

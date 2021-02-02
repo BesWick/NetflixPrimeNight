@@ -29,7 +29,7 @@ function BigCard({ filmType, filmID, togglePopup }) {
                         cancelToken: source.token,
                     },
                 )
-                console.log(response.data)
+                // console.log(response.data)
                 setFilmData(response.data)
                 setDirectors(
                     response.data.credits.crew.filter(
