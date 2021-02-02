@@ -44,7 +44,7 @@ function BigCard({ filmType, filmID, togglePopup }) {
                 return response
             } catch (err) {
                 if (!axios.isCancel(err)) {
-                    alert(err)
+                    console.log(err)
                     // console.log(err.message) // => prints: Api is being canceled
                 }
             }
@@ -53,7 +53,7 @@ function BigCard({ filmType, filmID, togglePopup }) {
         return () => {
             source.cancel("Component got unmounted")
         }
-    }, [])
+    }, [filmType, filmID])
 
     return (
         <div

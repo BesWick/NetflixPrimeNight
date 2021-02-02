@@ -1,6 +1,6 @@
-import axios from 'axios'
+import axios from "axios"
 
-require('dotenv').config()
+require("dotenv").config()
 
 const API_KEY = process.env.REACT_APP_TMDB_API_KEY
 const BASE_URL = `https://api.themoviedb.org/3/discover/movie?api_key=`
@@ -20,12 +20,15 @@ export function createDiscoverRequests(n) {
     return res
 }
 
-export function createSearchRequests(n, search) {
+export function createSearchRequests(n, search, cancel) {
     const res = []
     for (let i = 1; i <= n; i++) {
         res.push(
             axios.get(
                 `${SEARCH_URL}${API_KEY}&language=en-US&query=${search}&page=${i}&region=US`,
+                {
+                    cancelToken: cancel.token,
+                },
             ),
         )
     }
