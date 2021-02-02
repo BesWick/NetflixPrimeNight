@@ -10,7 +10,6 @@ const API_KEY = process.env.REACT_APP_TMDB_API_KEY
 
 function SmallCard({ filmType, film, logThis }) {
     // console.table(film)
-    const [isHover, setHover] = useState(false)
     const [isNetflix, setNetflix] = useState(false)
     const [isPrime, setPrime] = useState(false)
 
@@ -45,7 +44,7 @@ function SmallCard({ filmType, film, logThis }) {
         return () => {
             source.cancel("Component got unmounted")
         }
-    }, [film])
+    }, [film, filmType])
 
     const checkProviders = (providers) => {
         if (providers) {
@@ -69,8 +68,6 @@ function SmallCard({ filmType, film, logThis }) {
                     className='cardImg'
                     src={`${baseImageUrl}${film.poster_path}`}
                     alt={film.name}
-                    onMouseEnter={() => setHover(true)}
-                    onMouseLeave={() => setHover(false)}
                 />
                 {/* if hover -> display overlay with following info: film filmType, title, year, streaming availability */}
                 <div className='overlay'>
