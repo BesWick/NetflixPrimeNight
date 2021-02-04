@@ -17,6 +17,8 @@ https://np.johndobrota.com/
 
 > This product uses the [TMDb](https://www.themoviedb.org/) API but is not endorsed or certified by TMDb.
 
+![Netflix Prime Picture](np_pic.png)
+
 ## Getting Started
 
 ### Setup
