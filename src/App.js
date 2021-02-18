@@ -1,18 +1,18 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
-import "./App.css"
-import SmallCard from "./components/smallcard/smallcard"
-import BigCard from "./components/bigcard/bigcard"
-import SearchBar from "./components/searchbar/searchbar"
-import { createDiscoverRequests, createSearchRequests } from "./request"
-require("dotenv").config()
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import './App.css'
+import SmallCard from './components/smallcard/smallcard'
+import BigCard from './components/bigcard/bigcard'
+import SearchBar from './components/searchbar/searchbar'
+import { createDiscoverRequests, createSearchRequests } from './request'
+require('dotenv').config()
 
 function App() {
     const [films, setFilms] = useState([])
     const [cache, setCache] = useState([])
     const [bigCardFlag, setBigCardFlag] = useState(false)
-    const [bigCardData, setBigCardData] = useState("")
-    const [search, setSearch] = useState("")
+    const [bigCardData, setBigCardData] = useState('')
+    const [search, setSearch] = useState('')
 
     useEffect(() => {
         async function fetchData() {
@@ -45,15 +45,15 @@ function App() {
     useEffect(() => {
         const source = axios.CancelToken.source()
 
-        if (search === "") {
-            console.log("EMPTY")
+        if (search === '') {
+            console.log('EMPTY')
             setFilms(cache) //discover
         } else {
             //time to search w/ query
             searchTMDB(source)
         }
         return () => {
-            source.cancel("component")
+            source.cancel('component')
         }
     }, [search])
 
@@ -72,7 +72,7 @@ function App() {
                     // console.log("submitted all axios calls", resultArray)
                     let modifiedArray = resultArray.filter(
                         (a) =>
-                            a.media_type !== "person" &&
+                            a.media_type !== 'person' &&
                             a.poster_path !== null &&
                             a.backdrop_path != null,
                     )
@@ -117,7 +117,7 @@ function App() {
                             {films.map((film) => (
                                 <SmallCard
                                     key={film.id}
-                                    filmType={film?.media_type || "movie"}
+                                    filmType={film?.media_type || 'movie'}
                                     film={film}
                                     logThis={showBigCard}
                                 />
@@ -130,6 +130,8 @@ function App() {
                 <BigCard
                     filmType={bigCardData.filmType}
                     filmID={bigCardData.id}
+                    isPrime={bigCardData.isPrime}
+                    isNetflix={bigCardData.isNetflix}
                     togglePopup={() => setBigCardFlag(!bigCardFlag)}
                 />
             )}

@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react"
-import axios from "axios"
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 // import netflixlogo from './netflixlogo.jpg'
 // import primelogo from './primelogo.jpg'
-import "./smallcard.css"
+import './smallcard.css'
 
-const baseImageUrl = "https://image.tmdb.org/t/p/original/"
+const baseImageUrl = 'https://image.tmdb.org/t/p/original/'
 const baseProviderUrl = `https://api.themoviedb.org/3`
 const API_KEY = process.env.REACT_APP_TMDB_API_KEY
 
@@ -42,7 +42,7 @@ function SmallCard({ filmType, film, logThis }) {
         }
         fetchData()
         return () => {
-            source.cancel("Component got unmounted")
+            source.cancel('Component got unmounted')
         }
     }, [film, filmType])
 
@@ -52,10 +52,12 @@ function SmallCard({ filmType, film, logThis }) {
             if (providers.find((el) => el.provider_id === 9)) {
                 // console.log('Prime found!!')
                 setPrime(true)
+                film.isPrime = true
             }
             if (providers.find((el) => el.provider_id === 8)) {
                 // console.log('Netflix found!!')
                 setNetflix(true)
+                film.isNetflix = true
             }
         }
     }

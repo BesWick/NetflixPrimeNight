@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react"
-import axios from "axios"
-import "./bigcard.css"
+import { useEffect, useState } from 'react'
+import axios from 'axios'
+import './bigcard.css'
 
 const API_KEY = process.env.REACT_APP_TMDB_API_KEY
-const baseURL = "https://api.themoviedb.org/3"
-const baseImageUrl = "https://image.tmdb.org/t/p/original/"
+const baseURL = 'https://api.themoviedb.org/3'
+const baseImageUrl = 'https://image.tmdb.org/t/p/original/'
 
 const latterURL = `?api_key=${API_KEY}&language=en-US&append_to_response=credits`
 
-function BigCard({ filmType, filmID, togglePopup }) {
+function BigCard({ filmType, filmID, togglePopup, isPrime, isNetflix }) {
     const [filmData, setFilmData] = useState([])
     const [directors, setDirectors] = useState([])
     const [actors, setActors] = useState([])
@@ -33,7 +33,7 @@ function BigCard({ filmType, filmID, togglePopup }) {
                 setFilmData(response.data)
                 setDirectors(
                     response.data.credits.crew.filter(
-                        (mem) => mem.job === "Director",
+                        (mem) => mem.job === 'Director',
                     ),
                 )
                 setActors(
@@ -51,7 +51,7 @@ function BigCard({ filmType, filmID, togglePopup }) {
         }
         fetchData()
         return () => {
-            source.cancel("Component got unmounted")
+            source.cancel('Component got unmounted')
         }
     }, [filmType, filmID])
 
@@ -60,9 +60,9 @@ function BigCard({ filmType, filmID, togglePopup }) {
             className='outerContainer'
             style={{
                 backgroundImage: `url(${baseImageUrl}${filmData?.backdrop_path})`,
-                backgroundPosition: "center",
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
             }}>
             <div className='wrapper'>
                 <div className='bigcard'>
@@ -82,6 +82,30 @@ function BigCard({ filmType, filmID, togglePopup }) {
                             )}
                         </div>
                         <div className='titleRow'>{title}</div>
+                        <p id='greyText'>Watch Now</p>
+                        <div id='filmLink'>
+                            {isNetflix && (
+                                <a
+                                    href={`https://www.netflix.com/search?q=${title}`}>
+                                    <img
+                                        src='/netflixlogo.jpg'
+                                        className='logo'
+                                        href='google.com'
+                                        alt='netflix'
+                                    />
+                                </a>
+                            )}
+                            {isPrime && (
+                                <a href={`https://www.amazon.com/s?k=${title}`}>
+                                    <img
+                                        src='/primelogo.jpg'
+                                        className='logo'
+                                        href='google.com'
+                                        alt='prime'
+                                    />
+                                </a>
+                            )}
+                        </div>
                         <div className='overviewRow'>
                             <p id='greyText'>Plot</p>
                             {filmData?.overview}
