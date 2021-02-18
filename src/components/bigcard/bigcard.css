@@ -36,6 +36,7 @@
     text-align: left;
     width: 60%;
     overflow: scroll;
+    overflow-x: hidden;
 }
 .pictureSide {
     overflow: hidden;
@@ -59,6 +60,11 @@
         flex-basis: 100%;
         padding: 50px;
         overflow: scroll;
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+    .bigcard::-webkit-scrollbar {
+        display: none;
     }
 }
 .infoRow {
