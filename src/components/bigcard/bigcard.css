@@ -32,21 +32,6 @@
     border-radius: 10px;
 }
 
-@media screen and (max-width: 990px) {
-    .bigcard {
-        width: 500px;
-        flex-wrap: wrap;
-    }
-    .pictureSide {
-        display: none;
-    }
-    .bigcard {
-        flex-basis: 100%;
-        padding: 50px;
-        overflow: scroll;
-    }
-}
-
 .infoSide {
     text-align: left;
     width: 60%;
@@ -59,6 +44,23 @@
     border-radius: 10px 0 0 10px;
 }
 
+@media screen and (max-width: 990px) {
+    .bigcard {
+        width: 69%;
+        flex-wrap: wrap;
+    }
+    .pictureSide {
+        display: none;
+    }
+    .infoSide {
+        width: 100%;
+    }
+    .bigcard {
+        flex-basis: 100%;
+        padding: 50px;
+        overflow: scroll;
+    }
+}
 .infoRow {
     margin: 1.5rem 0px;
     font-size: 1rem;
