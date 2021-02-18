@@ -2,7 +2,7 @@
 
 Purpose:
 
-1. Solve wasting time finding a good movie on Netflix/Prime Video
+1. Reduce time wasted trying to find a good movie on Netflix/Prime Video
 2. Users can search for any movies/tv available on Netflix/Prime Video
 
 Tired of spending hours finding a good movie that's available on Netflix/Prime Video or being all geared up
