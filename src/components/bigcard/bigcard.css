@@ -21,7 +21,7 @@
     color: white;
     display: flex;
     align-self: center;
-    gap: 20px;
+    /* gap: 20px; */
     border-radius: 0.25rem;
     margin: 0px auto;
     position: absolute;
@@ -42,29 +42,29 @@
     overflow: hidden;
     object-fit: cover;
     width: 39%;
+    margin-right: 20px;
     border-radius: 10px 0 0 10px;
 }
 
 @media screen and (max-width: 990px) {
     .bigcard {
-        width: 69%;
-        flex-wrap: wrap;
-    }
-    .pictureSide {
-        display: none;
-    }
-    .infoSide {
+        box-sizing: border-box;
         width: 100%;
-    }
-    .bigcard {
-        flex-basis: 100%;
-        padding: 50px;
+        height: 100%;
+        padding: 20px;
+        flex-wrap: wrap;
         overflow: scroll;
         -ms-overflow-style: none; /* IE and Edge */
         scrollbar-width: none; /* Firefox */
     }
     .bigcard::-webkit-scrollbar {
         display: none;
+    }
+    .pictureSide {
+        display: none;
+    }
+    .infoSide {
+        width: 100%;
     }
 }
 .infoRow {
